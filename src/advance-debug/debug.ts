@@ -2,6 +2,8 @@
 
 import { PrismaClient } from '@prisma/client'
 
+//sometimes when we are viewing the SQL queries in the logs then certain values remain hidden under stuff like $1,$2
+//but we want them to be shown and then we pass "log" to prisma client like this
 const prisma = new PrismaClient({
     log: [
       {

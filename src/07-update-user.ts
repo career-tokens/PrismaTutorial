@@ -4,12 +4,13 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
+    //query to update the user with the id==1 such that the name should be changed to "mainak"
   await prisma.user.update({
     where: {
         id: 1
     },
     data: {
-        name: "harkiratsingh2"
+        name: "mainak"
     }
   })
 }

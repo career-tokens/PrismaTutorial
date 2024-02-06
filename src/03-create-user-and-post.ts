@@ -2,19 +2,23 @@
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
-
+/**
+ * query to create a user under User table with email:"abc@gmail.com",name:"abc" and two posts one with title 
+ * "abcs title1" and other with title "abcs title2" such that those posts are correspondingly created in Post table
+ * such that their authorId==the user id since they are connected
+ */
 async function main() {
   await prisma.user.create({
     data: {
-     email: "harkirat3@gmail.com",
-     name: "harkriat",
+     email: "abc@gmail.com",
+     name: "abc",
      posts: {
         create: [
             {
-                title: "harkirats title1"
+                title: "abcs title1"
             },
             {
-                title: "harkirats title2"
+                title: "abcs title2"
             },
         ]
      }

@@ -1,0 +1,36 @@
+// model to create an User table with columns id (to be filled with increasing integers),
+// email (string and unique) , name (? means its NOT compulsory and would be a string) and 
+// posts (array of the posts written by the user and they would be following the model Post)
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+  posts Post[]
+}
+
+// model to create Post table with columns id(increasing serial number), title (string),
+// content(optional string) ,published( boolean with default value being false), 
+// author (here this would be of the type specified by model User such that we are establishing
+// a relation between the User table and Post table , what we are trying to do is relate a post 
+// to its corresponding author in the User table and for that we relate the authorId from this 
+// table to the id from User table)
+// and authorId (integer)
+
+model Post {
+  id        Int     @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean @default(false)
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}

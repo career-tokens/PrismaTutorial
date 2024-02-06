@@ -4,6 +4,8 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
+//query to delete as many posts as possible which are basically
+//unpublished for the user with id==1
   await prisma.user.update({
     where: {
         id: 1

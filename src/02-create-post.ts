@@ -2,23 +2,24 @@
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
-
+//query to add a post where the title is "my blog",content is "prisma" and its author is 
+//the same user (from User table) who has the id==1
 async function main() {
   await prisma.post.create({
-    data: {
-     title: "title of post",
-     author: {
-        connect: {
-            id: 1
+    data:{
+        title:"my blog",
+        content:"prisma",
+        author:{
+            connect:{
+                id:1
+            }
         }
-     }
     }
   })
 }
 
 main()
   .then(async () => {
-    console.log("done");
     await prisma.$disconnect()
   })
   .catch(async (e) => {

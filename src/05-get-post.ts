@@ -2,6 +2,9 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient({log: ['info', 'query'],})
 
+/**
+ * query to extract all the posts such that also give the author (user from User table) info including ONLY the email
+ */
 async function main() {
     const posts = await prisma.post.findMany({
         include: {
